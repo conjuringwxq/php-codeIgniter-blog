@@ -3,7 +3,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta http-equiv="Content-Language" content="zh-CN">
 	<base href="<?php echo site_url();?>">
-  <title>Johnny的博客 - SYSIT个人博客</title>
+  <title><?php echo $this->session->userdata('uname');?>的博客 - SYSIT个人博客</title>
       <link rel="stylesheet" href="assets/css/space2011.css" type="text/css" media="screen">
   <link rel="stylesheet" type="text/css" href="assets/css/jquery.css" media="screen">
   <script type="text/javascript" src="assets/js/jquery-1.js"></script>
@@ -23,7 +23,7 @@
 <![endif]-->
 <div id="OSC_Screen"><!-- #BeginLibraryItem "/Library/OSC_Banner.lbi" -->
 <div id="OSC_Banner">
-    <div id="OSC_Slogon">Johnny's Blog</div>
+    <div id="OSC_Slogon"><?php echo $this->session->userdata('uname');?>'s Blog</div>
     <div id="OSC_Channels">
         <ul>
         <li><a href="#" class="project">心情 here...</a></li>
@@ -33,15 +33,15 @@
 </div><!-- #EndLibraryItem --><div id="OSC_Topbar">
 	  <div id="VisitorInfo">
 		当前访客身份：
-				Johnny [ <a href="#">退出</a> ]
+				<?php echo $this->session->userdata('uname');?> [ <a href="#">退出</a> ]
 				<span id="OSC_Notification">
 			<a href="#" class="msgbox" title="进入我的留言箱">你有<em>0</em>新留言</a>
 																				</span>
     </div>
 		<div id="SearchBar">
     		<form action="#">
-								<input name="user" value="154693" type="hidden">
-																								<input id="txt_q" name="q" class="SERACH" value="在此空间的博客中搜索" onblur="(this.value=='')?this.value='在此空间的博客中搜索':this.value" onfocus="if(this.value=='在此空间的博客中搜索'){this.value='';};this.select();" type="text">
+                <input name="user" value="154693" type="hidden">
+                <input id="txt_q" name="q" class="SERACH" value="在此空间的博客中搜索" onblur="(this.value=='')?this.value='在此空间的博客中搜索':this.value" onfocus="if(this.value=='在此空间的博客中搜索'){this.value='';};this.select();" type="text">
 				<input class="SUBMIT" value="搜索" type="submit">
     		</form>
 		</div>
@@ -50,7 +50,7 @@
 	<div id="OSC_Content">
 <div id="AdminScreen">
     <div id="AdminPath">
-        <a href="index_logined.htm">返回我的首页</a>&nbsp;»
+        <a href="Blog/index">返回我的首页</a>&nbsp;»
     	<span id="AdminTitle">管理首页</span>
     </div>
     <div id="AdminMenu"><ul>
@@ -66,64 +66,49 @@
 <ul>
 	<li class="caption">博客管理	
 		<ol>
-			<li><a href="newBlog.htm">发表博客</a></li>
-			<li><a href="blogCatalogs.htm">博客设置/分类管理</a></li>
-			<li><a href="blogs.htm">文章管理</a></li>
-			<li class="current"><a href="blogComments.htm">博客评论管理</a></li>
+			<li><a href="Blog/newBlog">发表博客</a></li>
+			<li><a href="Blog/blogCatalogs">博客设置/分类管理</a></li>
+			<li><a href="Blog/blogs">文章管理</a></li>
+			<li class="current"><a href="Blog/blogComments">博客评论管理</a></li>
 		</ol>
 	</li>
 </ul>
 </div>
     <div id="AdminContent">
 <div class="MainForm BlogCommentManage">
-  <h3>共有 3 篇博客评论，每页显示 20 个，共 1 页</h3>
+  <h3>共有 <?php echo count($ucom);?> 篇博客评论，每页显示 20 个，共 1 页</h3>
   <ul>
-		<li id="cmt_24027_154693_261665734" class="row_1">
-		<span class="portrait"><a href="#" target="_blank"><img src="images/portrait.gif" alt="Johnny" title="Johnny" class="SmallPortrait" user="154693" align="absmiddle"></a></span>
-		<span class="comment">
-		<div class="user"><b>Johnny</b> 评论了 <a href="viewPost_comment.htm" target="_blank">测试文章3</a></div>
-		<div class="content"><p>hoho</p></div>
+      <?php
+        foreach ($ucom as $v) {
+            ?>
+            <li id="cmt_24027_154693_261665734" class="row_1 <?php echo $v->COMMENTATOR;?>">
+                <span class="portrait">
+                    <a href="#" target="_blank">
+                        <img src="images/portrait.gif"
+                             alt="<?php echo $v->ACCOUNT; ?>"
+                             title="<?php echo $v->ACCOUNT; ?>"
+                             class="SmallPortrait" user="154693"
+                             align="absmiddle">
+                    </a>
+                </span>
+                <span class="comment">
+		<div class="user"><b><?php echo $v->ACCOUNT; ?></b> 评论了 <a href="Blog/viewPost_logined"
+                                                                    target="_blank"><?php echo $v->TITLE;?></a></div>
+		<div class="content"><p><?php echo $v->CONTENT?></p></div>
 		<div class="opts">
 			<span style="float:right;">
-			<a href="javascript:delete_c_by_id(24027,154693,261665734)">删除</a> |
-			<a href="javascript:delete_c_by_user(154693)">删除此人所有评论</a>
-			</span>			
-			2011-06-18 00:37
+			<a href="javascript:;" id="<?php echo $v->COMMENT_ID;?>">删除</a> |
+			<a href="javascript:;" id="<?php echo $v->COMMENTATOR;?>">删除此人所有评论</a>
+			</span>
+			<?php echo $v->ADD_TIME;?>
 		</div>
 		</span>
-		<div class="clear"></div>
-	</li>
-		<li id="cmt_24026_154693_261665461" class="row_0">
-		<span class="portrait"><a href="#" target="_blank"><img src="images/portrait.gif" alt="Johnny" title="Johnny" class="SmallPortrait" user="154693" align="absmiddle"></a></span>
-		<span class="comment">
-		<div class="user"><b>Johnny</b> 评论了 <a href="viewPost_logined.htm" target="_blank">测试文章2</a></div>
-		<div class="content"><p>测试评论111</p></div>
-		<div class="opts">
-			<span style="float:right;">
-			<a href="javascript:delete_c_by_id(24026,154693,261665461)">删除</a> |
-			<a href="javascript:delete_c_by_user(154693)">删除此人所有评论</a>
-			</span>			
-			2011-06-18 00:15
-		</div>
-		</span>
-		<div class="clear"></div>
-	</li>
-		<li id="cmt_24026_154693_261665458" class="row_1">
-		<span class="portrait"><a href="#" target="_blank"><img src="images/portrait.gif" alt="Johnny" title="Johnny" class="SmallPortrait" user="154693" align="absmiddle"></a></span>
-		<span class="comment">
-		<div class="user"><b>Johnny</b> 评论了 <a href="viewPost_logined.htm" target="_blank">测试文章2</a></div>
-		<div class="content"><p>测试评论</p></div>
-		<div class="opts">
-			<span style="float:right;">
-			<a href="javascript:delete_c_by_id(24026,154693,261665458)">删除</a> |
-			<a href="javascript:delete_c_by_user(154693)">删除此人所有评论</a>
-			</span>			
-			2011-06-18 00:14
-		</div>
-		</span>
-		<div class="clear"></div>
-	</li>
-	  </ul>
+                <div class="clear"></div>
+            </li>
+            <?php
+            }
+        ?>
+  </ul>
 </div>
 </div>
 	<div class="clear"></div>
@@ -133,5 +118,26 @@
 	<div class="clear"></div>
 	<div id="OSC_Footer">© 赛斯特(WWW.SYSIT.ORG)</div>
 </div>
+<script>
+    $('div.opts a:first-child').click(function(e){
+        $(this).parents('li.row_1').addClass('choice');
+        var cfm=confirm('您确认要删除此篇评论？');
+        if(cfm==true){
+            $.get('Blog/comdel',{'comid':e.target.id},function(data){
+                $('li.row_1').remove('.choice');
+            },'json');
+        }else if(cfm==false){
+            $('li.row_1').removeClass('choice');
+        }
+    });
+    $('div.opts a:last-child').click(function(e){
+       var allcfm=confirm('您确认要删除此人发表的所有评论？');
+       if(allcfm==true){
+           $.get('Blog/all_comdel',{'commentator':e.target.id},function(){
+               $('li.row_1').remove('.'+e.target.id);
+           },'json');
+       }
+    });
 
+</script>
 </body></html>

@@ -3,7 +3,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta http-equiv="Content-Language" content="zh-CN">
   <base href="<?php echo site_url();?>">
-  <title>博客设置/分类管理 Johnny的博客 - SYSIT个人博客</title>
+  <title>博客设置/分类管理 <?php echo $this->session->userdata('uname');?>的博客 - SYSIT个人博客</title>
       <link rel="stylesheet" href="assets/css/space2011.css" type="text/css" media="screen">
   <link rel="stylesheet" type="text/css" href="assets/css/jquery.css" media="screen">
   <script type="text/javascript" src="assets/js/jquery-1.js"></script>
@@ -23,7 +23,7 @@
 <![endif]-->
 <div id="OSC_Screen"><!-- #BeginLibraryItem "/Library/OSC_Banner.lbi" -->
 <div id="OSC_Banner">
-    <div id="OSC_Slogon">Johnny's Blog</div>
+    <div id="OSC_Slogon"><?php echo $this->session->userdata('uname');?>'s Blog</div>
     <div id="OSC_Channels">
         <ul>
         <li><a href="#" class="project">心情 here...</a></li>
@@ -33,15 +33,15 @@
 </div><!-- #EndLibraryItem --><div id="OSC_Topbar">
 	  <div id="VisitorInfo">
 		当前访客身份：
-				Johnny [ <a href="#">退出</a> ]
+                <?php echo $this->session->userdata('uname');?> [ <a href="User/unindex">退出</a> ]
 				<span id="OSC_Notification">
 			<a href="#" class="msgbox" title="进入我的留言箱">你有<em>0</em>新留言</a>
 																				</span>
     </div>
 		<div id="SearchBar">
     		<form action="#">
-								<input name="user" value="154693" type="hidden">
-																								<input id="txt_q" name="q" class="SERACH" value="在此空间的博客中搜索" onblur="(this.value=='')?this.value='在此空间的博客中搜索':this.value" onfocus="if(this.value=='在此空间的博客中搜索'){this.value='';};this.select();" type="text">
+                <input name="user" value="154693" type="hidden">
+                <input id="txt_q" name="q" class="SERACH" value="在此空间的博客中搜索" onblur="(this.value=='')?this.value='在此空间的博客中搜索':this.value" onfocus="if(this.value=='在此空间的博客中搜索'){this.value='';};this.select();" type="text">
 				<input class="SUBMIT" value="搜索" type="submit">
     		</form>
 		</div>
@@ -50,79 +50,78 @@
 	<div id="OSC_Content">
 <div id="AdminScreen">
     <div id="AdminPath">
-        <a href="index_logined.htm">返回我的首页</a>&nbsp;»
+        <a href="Blog/index">返回我的首页</a>&nbsp;»
     	<span id="AdminTitle"d>博客设置/分类管理</span>
     </div>
     <div id="AdminMenu"><ul>
 	<li class="caption">个人信息管理		
 		<ol>
-			<li><a href="inbox.htm">站内留言(0/1)</a></li>
-			<li><a href="profile.htm">编辑个人资料</a></li>
-			<li><a href="chpwd.htm">修改登录密码</a></li>
-			<li><a href="userSettings.htm">网页个性设置</a></li>
+			<li><a href="Blog/inbox">站内留言(0/1)</a></li>
+			<li><a href="Blog/profile">编辑个人资料</a></li>
+			<li><a href="Blog/chpwd">修改登录密码</a></li>
+			<li><a href="Blog/userSettings">网页个性设置</a></li>
 		</ol>
 	</li>		
 </ul>
 <ul>
 	<li class="caption">博客管理	
 		<ol>
-			<li><a href="newBlog.htm">发表博客</a></li>
-			<li class="current"><a href="blogCatalogs.htm">博客设置/分类管理</a></li>
-			<li><a href="blogs.htm">文章管理</a></li>
-			<li><a href="blogComments.htm">博客评论管理</a></li>
+			<li><a href="Blog/newBlog">发表博客</a></li>
+			<li class="current"><a href="Blog/blogCatalogs">博客设置/分类管理</a></li>
+			<li><a href="Blog/blogs">文章管理</a></li>
+			<li><a href="Blog/blogComments">博客评论管理</a></li>
 		</ol>
 	</li>
 </ul>
 </div>
     <div id="AdminContent">
 <div class="MainForm BlogCatalogManage">
-<form id="CatalogForm" action="/addBlogCatalog" method="post">
+<form id="CatalogForm" action="Blog/add_catalog"  method="post">
     <h3> 添加博客分类 </h3>
     <div id="error_msg" class="error_msg" style="display:none;"></div>
-    <label>分类名称:</label><input id="txt_link_name" name="name" size="15" tabindex="1" type="text">
+    <label>分类名称:</label><input id="txt_link_name" name="cata" size="15" tabindex="1" type="text">
     <label>排序值:</label><input name="sort_order" value="0" size="3" type="text">
     <span class="submit">
-          <input value="添加&nbsp;»" tabindex="3" class="BUTTON SUBMIT" type="submit">
-        </span>
+          <input value="添加&nbsp;»" tabindex="3" class="BUTTON SUBMIT" type="submit" name="sub">
+    </span>
 </form>
 <form class="BlogCatalogs">
-<h3>博客分类 <span>(点击分类名编辑)</span></h3>
-<table cellpadding="1" cellspacing="1">
-	<tbody><tr>
-		<th>序号</th>
-		<th>分类名</th>
-		<th>文章</th>
-		<th>操作</th>
-	</tr>
-	<tr id="catalog_92334">
-		<td class="idx">1</td>
-		<td class="name"><a href="editCatalog.htm" title="点击修改博客分类">工作日志</a></td>
-		<td class="num">3</td>
-		<td class="opts">
-			<a href="editCatalog.htm" title="点击修改博客分类">修改</a>
-			<a href="#" onclick="return delete_catalog(154693,92334);">删除</a>
-		</td>
-	</tr>
-	<tr id="catalog_92335">
-		<td class="idx">2</td>
-		<td class="name"><a href="#" title="点击修改博客分类">日常记录</a></td>
-		<td class="num">0</td>
-		<td class="opts">
-			<a href="#" title="点击修改博客分类">修改</a>
-			<a href="#" onclick="return delete_catalog(154693,92335);">删除</a>
-		</td>
-	</tr>
-	<tr id="catalog_92336">
-		<td class="idx">3</td>
-		<td class="name"><a href="#" title="点击修改博客分类">转贴的文章</a></td>
-		<td class="num">0</td>
-		<td class="opts">
-			<a href="#" title="点击修改博客分类">修改</a>
-			<a href="#" onclick="return delete_catalog(154693,92336);">删除</a>
-		</td>
-	</tr>
-</tbody></table>
+    <h3>博客分类 <span>(点击分类名编辑)</span></h3>
+    <table cellpadding="1" cellspacing="1">
+        <tbody><tr>
+            <th>序号</th>
+            <th>分类名</th>
+            <th>文章</th>
+            <th>操作</th>
+        </tr>
+        <?php
+            //$val->CATALOG_ID
+            $i=0;
+            foreach($cata as $val) {
+                if($this->session->userdata('uid')==$val->USER_ID){
+                    $i=$i+1;
+                ?>
+                <tr id="<?php echo $i;?>">
+                    <td class="idx"><?php echo $i;?></td>
+                    <td class="name">
+                        <a href="Blog/editCatalog" title="点击修改博客分类">
+                            <?php echo $val->NAME;?>
+                        </a>
+                    </td>
+                    <td class="num"><?php echo $val->BLOG_COUNT;?></td>
+                    <td class="opts">
+                        <a href="Blog/editCatalog?id=<?php echo $val->CATALOG_ID;?>" class="amend" title="点击修改博客分类">修改</a>
+                        <a href="javascript:;" class="blogdel" id="<?php echo $val->CATALOG_ID;?>">删除</a>
+                    </td>
+                </tr>
+                <?php
+                }
+            }
+        ?>
+        </tbody>
+    </table>
 </form>
+
 </div>
 </div>
 	<div class="clear"></div>
@@ -132,5 +131,21 @@
 	<div class="clear"></div>
 	<div id="OSC_Footer">© 赛斯特(WWW.SYSIT.ORG)</div>
 </div>
-<script type="text/javascript" src="assets/js/space.htm" defer="defer"></script>
+<script>
+    $('.blogdel').click(function(e){
+        $(this).parents('tr').addClass('choice');
+        var cfm=confirm('确实要删除此博客分类吗？');
+        if(cfm==true){
+            $.get('Blog/blogdel',{'bid' :e.target.id},function(data){
+                $('tr').remove('.choice');
+            },'json');
+        }else if(cfm==false){
+            $('tr').removeClass('choice');
+        }
+    });
+
+    $('.amend').click(function(e){
+        console.log(e.target);
+    })
+</script>
 </body></html>

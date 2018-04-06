@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta http-equiv="Content-Language" content="zh-CN">
-  <base href="<?php echo site_url();?>">
+    <base href="<?php echo site_url();?>">
   <title>测试文章2 -  <?php echo $this->session->userdata('uname');?>的博客 - SYSIT个人博客</title>
     <link rel="stylesheet" href="assets/css/space2011.css" type="text/css" media="screen">
   <link rel="stylesheet" type="text/css" href="assets/css/jquery.css" media="screen">
@@ -40,8 +40,8 @@
         </div>
 		<div id="SearchBar">
     		<form action="#">
-								<input name="user" value="154693" type="hidden">
-																								<input id="txt_q" name="q" class="SERACH" value="在此空间的博客中搜索" onblur="(this.value=='')?this.value='在此空间的博客中搜索':this.value" onfocus="if(this.value=='在此空间的博客中搜索'){this.value='';};this.select();" type="text">
+                <input name="user" value="154693" type="hidden">
+                <input id="txt_q" name="q" class="SERACH" value="在此空间的博客中搜索" onblur="(this.value=='')?this.value='在此空间的博客中搜索':this.value" onfocus="if(this.value=='在此空间的博客中搜索'){this.value='';};this.select();" type="text">
 				<input class="SUBMIT" value="搜索" type="submit">
     		</form>
 		</div>
@@ -52,7 +52,7 @@
     <div id="lnks">
 		<strong><?php echo $this->session->userdata('uname');?>的博客</strong>
 		<div>
-			<a href="Blog/index">TA的博客列表</a>&nbsp;|
+			<a href="index.htm">TA的博客列表</a>&nbsp;|
 			<a href="javascript:sendmsg(154693)">发送留言</a>
 </span>
 		</div>
@@ -81,14 +81,15 @@
 
 #AjaxBox #Title {
 	padding:5px 0 5px 10px;
-	background:#40AA53;
-	color:#fff;
-    font-size: 10pt; 
+	background: #F2F2F2;
+    font-size: 12pt; 
     font-weight:bold;
 	margin-bottom:10px;
+	height: 100px;
+	line-height: 100px;
 }
 
-#AjaxBox #Title a {color:#ff0;margin:0 3px;}
+#AjaxBox #Title a {color:#4466BB;margin:0 3px;}
 
 /** 表单 **/
 
@@ -112,7 +113,7 @@
 #AjaxBox img#img_vcode {border:2px solid #9AF;}
 
 /* 表单 */
-#AjaxBox form h2 {font-size:12pt; border-bottom:1px solid #ccc;margin:0;padding:10px 0 10px 20px}
+#AjaxBox form h2 {font-size:12pt; border-bottom:1px solid #ccc;margin:0;padding:10px 0 10px 20px;}
 #AjaxBox form h2 a {margin:0 5px;}
 
 #AjaxBox form tr.Tip td ol {
@@ -137,22 +138,9 @@
 #OSChinaLoginTip ul li a:hover {border:1px solid #40AA53;background:#cfc;}
 </style>
 <div id="AjaxBox">
-	<h2 id="Title">发送留言给 <u><?php echo $this->session->userdata('uname');?></u></h2>
+	<h2 id="Title">发送留言给 <u><?php echo $this->session->userdata('uname');?></u> 成功! <a href="Blog/index">查看<?php echo $this->session->userdata('uname');?>的博客列表</a></h2>
 	<div id="Content"><div id="s_error_msg" class="error_msg"></div>
 <div id="s_success_msg" class="success_msg"></div>
-
-<form id="frm_sendmsg" action="Message/sendMsgOK" method="POST">
-<table>
-<tbody><tr><td class="heading">留言内容(最多250个字): </td></tr>
-<tr><td><textarea id="ta_msg_content" name="content" style="width: 400px; height: 120px; padding: 2px; overflow: hidden;"></textarea></td></tr>
-<tr class="submit">
-	<td>
-	<input value="发送»" class="SUBMIT" type="submit">
-	<a href="javascript:history.back();">取消</a>
-	</td>
-</tr>
-</tbody></table>
-</form>
 </div>
 </div>
 </div>	
@@ -162,7 +150,7 @@
 	<strong>最新博文</strong><ul>
     		<li><a href="#">测试文章2</a></li>
 				<li><a href="#">测试文章1</a></li>
-			<li class="more"><a href="Blog/index">查看所有博文»</a></li>
+			<li class="more"><a href="index.htm">查看所有博文»</a></li>
     </ul>
 </div>
 
@@ -179,7 +167,7 @@
     </form>
 </div>
 </div>
-<script type="text/javascript" src="assets/js/blog.htm" defer="defer"></script>
+<script type="text/javascript" src="assets/js/Blog/blogs" defer="defer"></script>
 <script type="text/javascript" src="assets/js/brush.js"></script>
 <link type="text/css" rel="stylesheet" href="assets/css/shCore.css">
 <link type="text/css" rel="stylesheet" href="assets/css/shThemeDefault.css">

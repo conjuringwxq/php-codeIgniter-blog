@@ -7,6 +7,10 @@
         public function sendMsg(){
             $this->load->view('sendMsg.php');
         }
+
+        public function sendMsgOK(){
+            $this->load->view('sendMsgOK.php');
+        }
     }
 
 ?>
