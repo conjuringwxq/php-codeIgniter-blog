@@ -26,7 +26,7 @@
     <div id="OSC_Slogon">Johnny's Blog</div>
     <div id="OSC_Channels">
         <ul>
-        <li><a href="#" class="project">心情 here...</a></li>
+        <li><a href="javascript:;" class="project"><?php echo $this->session->userdata(umood);?></a></li>
         </ul>
     </div>
     <div class="clear"></div>
@@ -52,7 +52,7 @@
     <div id="lnks">
 		<strong>Johnny的博客</strong>
 		<div>
-			<a href="#">TA的博客列表</a>&nbsp;|
+			<a href="javascript:;">TA的博客列表</a>&nbsp;|
 			<a href="sendMsg.htm">发送留言</a>
 </span>
 		</div>
@@ -88,7 +88,7 @@
 	<h2 class="BlogAccess_true BlogTop_0"><a href="viewPost_logined.htm">测试文章2</a></h2>
 	<div class="outline">
 	  <span class="time">发表于 2011年06月17日 23:06</span>
-	  <span class="catalog">分类: <a href="#">工作日志</a></span>
+	  <span class="catalog">分类: <a href="javascript:;">工作日志</a></span>
 	  <span class="stat">统计: 0评/1阅</span>
 	  	</div>
 		<div class="TextContent" id="blog_content_24026">
@@ -100,7 +100,7 @@
 	<h2 class="BlogAccess_true BlogTop_0"><a href="viewPost.htm">测试文章1</a></h2>
 	<div class="outline">
 	  <span class="time">发表于 2011年06月17日 23:04</span>
-	  <span class="catalog">分类: <a href="#">工作日志</a></span>
+	  <span class="catalog">分类: <a href="javascript:;">工作日志</a></span>
 	  <span class="stat">统计: 0评/3阅</span>
 	  	</div>
 		<div class="TextContent" id="blog_content_24025">
@@ -114,9 +114,9 @@
 <div class="BlogMenu"><div class="catalogs SpaceModule">
   <strong>博客分类</strong>
   <ul class="LinkLine">
-    	<li><a href="#">工作日志(2)</a></li>
-		<li><a href="#">日常记录(0)</a></li>
-		<li><a href="#">转贴的文章(0)</a></li>
+    	<li><a href="javascript:;">工作日志(2)</a></li>
+		<li><a href="javascript:;">日常记录(0)</a></li>
+		<li><a href="javascript:;">转贴的文章(0)</a></li>
 	  </ul>
 </div>
 <div class="comments SpaceModule">

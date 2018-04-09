@@ -3,7 +3,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta http-equiv="Content-Language" content="zh-CN">
     <base href="<?php echo site_url();?>">
-  <title>测试文章2 -  <?php echo $this->session->userdata('uname');?>的博客 - SYSIT个人博客</title>
+  <title>发送留言成功! -  <?php echo $this->session->userdata('uname');?>的博客 - SYSIT个人博客</title>
     <link rel="stylesheet" href="assets/css/space2011.css" type="text/css" media="screen">
   <link rel="stylesheet" type="text/css" href="assets/css/jquery.css" media="screen">
   <script type="text/javascript" src="assets/js/jquery-1.js"></script>
@@ -26,7 +26,7 @@
     <div id="OSC_Slogon"><?php echo $this->session->userdata('uname');?>'s Blog</div>
     <div id="OSC_Channels">
         <ul>
-        <li><a href="#" class="project">心情 here...</a></li>
+        <li><a href="javascript:;" class="project"><?php echo $this->session->userdata(umood);?></a></li>
         </ul>
     </div>
     <div class="clear"></div>
@@ -39,7 +39,7 @@
 																				</span>
         </div>
 		<div id="SearchBar">
-    		<form action="#">
+    		<form action="javascript:;">
                 <input name="user" value="154693" type="hidden">
                 <input id="txt_q" name="q" class="SERACH" value="在此空间的博客中搜索" onblur="(this.value=='')?this.value='在此空间的博客中搜索':this.value" onfocus="if(this.value=='在此空间的博客中搜索'){this.value='';};this.select();" type="text">
 				<input class="SUBMIT" value="搜索" type="submit">
@@ -48,11 +48,11 @@
 		<div class="clear"></div>
 	</div>
 	<div id="OSC_Content"><div class="SpaceChannel">
-	<div id="portrait"><a href="#"><img src="images/portrait.gif" alt="<?php echo $this->session->userdata('uname');?>" title="<?php echo $this->session->userdata('uname');?>" class="SmallPortrait" user="154693" align="absmiddle"></a></div>
+	<div id="portrait"><a href="Blog/adminIndex"><img src="images/portrait.gif" alt="<?php echo $this->session->userdata('uname');?>" title="<?php echo $this->session->userdata('uname');?>" class="SmallPortrait" user="154693" align="absmiddle"></a></div>
     <div id="lnks">
 		<strong><?php echo $this->session->userdata('uname');?>的博客</strong>
 		<div>
-			<a href="index.htm">TA的博客列表</a>&nbsp;|
+			<a href="Blog/index">TA的博客列表</a>&nbsp;|
 			<a href="javascript:sendmsg(154693)">发送留言</a>
 </span>
 		</div>
@@ -148,9 +148,14 @@
 </div>
 <div class="BlogMenu"><div class="RecentBlogs SpaceModule">
 	<strong>最新博文</strong><ul>
-    		<li><a href="#">测试文章2</a></li>
-				<li><a href="#">测试文章1</a></li>
-			<li class="more"><a href="index.htm">查看所有博文»</a></li>
+            <?php
+            foreach ($new as $v) {
+                ?>
+                <li><a href="javascript:;"><?php echo $v->TITLE;?></a></li>
+                <?php
+            }
+            ?>
+			<li class="more"><a href="Blog/index">查看所有博文</a></li>
     </ul>
 </div>
 

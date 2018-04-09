@@ -26,20 +26,20 @@
     <div id="OSC_Slogon"><?php echo $this->session->userdata('uname');?>'s Blog</div>
     <div id="OSC_Channels">
         <ul>
-        <li><a href="#" class="project">心情 here...</a></li>
+        <li><a href="javascript:;" class="project"><?php echo $this->session->userdata(umood);?></a></li>
         </ul>
     </div>
     <div class="clear"></div>
 </div><!-- #EndLibraryItem --><div id="OSC_Topbar">
 <div id="VisitorInfo">
 		当前访客身份：
-                <?php echo $this->session->userdata('uname');?> [ <a href="#">退出</a> ]
+                <?php echo $this->session->userdata('uname');?> [ <a href="User/unindex">退出</a> ]
 				<span id="OSC_Notification">
-			<a href="#" class="msgbox" title="进入我的留言箱">你有<em>0</em>新留言</a>
+			<a href="Blog/inbox" class="msgbox" title="进入我的留言箱">你有<em>0</em>新留言</a>
 																				</span>
     </div>
 		<div id="SearchBar">
-    		<form action="#">
+    		<form action="javascript:;">
                 <input name="user" value="154693" type="hidden">
                 <input id="txt_q" name="q" class="SERACH" value="在此空间的博客中搜索" onblur="(this.value=='')?this.value='在此空间的博客中搜索':this.value" onfocus="if(this.value=='在此空间的博客中搜索'){this.value='';};this.select();" type="text">
 				<input class="SUBMIT" value="搜索" type="submit">
@@ -82,16 +82,19 @@
   <tbody><tr><td class="t">标题（必填）</td></tr>
   <tr>
 	<td>
-    <input name="title" id="f_title" class="TEXT" style="width: 400px;" type="text">
+    <input name="title" id="f_title" class="TEXT" style="width: 400px;" type="text" value="<?php echo $alter[0]->TITLE;?>">
 	存放于
         <select name="catalog">
             <?php
             foreach ($newcata as $v) {
-                if($this->session->userdata('uid')==$v->USER_ID) {
+//                if($alter[0]->NAME == $v->NAME){//有问题
+                    echo "<script>$('option').removeAttr('selected')</script>";
+                    if($this->session->userdata('uid')==$v->USER_ID) {
                     ?>
-                    <option selected="selected" value=<?php echo $v->CATALOG_ID; ?>><?php echo $v->NAME; ?></option>
+                        <option selected="selected" value=<?php echo $v->CATALOG_ID; ?>><?php echo $v->NAME; ?></option>
                     <?php
-                }
+                    }
+//                }
             }
             ?>
         </select>
@@ -105,7 +108,7 @@
 
   <tr>
 
-    <td><textarea name="content" id="ta_blog_content" style="width:750px;height:300px;"></textarea></td>
+    <td><textarea name="content" id="ta_blog_content" style="width:750px;height:300px;"><?php echo $alter[0]->CONTENT;?></textarea></td>
   </tr>
   <tr class="option">
 	<td><strong>文章类型？</strong>
@@ -166,7 +169,7 @@
 
 
 	<div class="clear"></div>
-	<div id="OSC_Footer">© 赛斯特(WWW.SYSIT.ORG)</div>
+	<div id="OSC_Footer">© 赛斯特(WWW.SYSIT.ORG)<?php var_dump($alter);?></div>
 </div>
 
     <script>

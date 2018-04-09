@@ -26,7 +26,7 @@
     <div id="OSC_Slogon"><?php echo $this->session->userdata('uname');?>'s Blog</div>
     <div id="OSC_Channels">
         <ul>
-        <li><a href="#" class="project">心情 here...</a></li>
+        <li><a href="javascript:;" class="project"><?php echo $this->session->userdata(umood);?></a></li>
         </ul>
     </div>
     <div class="clear"></div>
@@ -35,11 +35,11 @@
 		当前访客身份：
                 <?php echo $this->session->userdata('uname');?> [ <a href="User/unindex">退出</a> ]
 				<span id="OSC_Notification">
-			<a href="#" class="msgbox" title="进入我的留言箱">你有<em>0</em>新留言</a>
+			<a href="Blog/inbox" class="msgbox" title="进入我的留言箱">你有<em>0</em>新留言</a>
 																				</span>
     </div>
 		<div id="SearchBar">
-    		<form action="#">
+    		<form action="javascript:;">
                 <input name="user" value="154693" type="hidden">
                 <input id="txt_q" name="q" class="SERACH" value="在此空间的博客中搜索" onblur="(this.value=='')?this.value='在此空间的博客中搜索':this.value" onfocus="if(this.value=='在此空间的博客中搜索'){this.value='';};this.select();" type="text">
 				<input class="SUBMIT" value="搜索" type="submit">

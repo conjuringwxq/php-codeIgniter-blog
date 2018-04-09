@@ -30,7 +30,7 @@
     <div id="OSC_Slogon"><?php echo $this->session->userdata('uname');?>'s Blog</div>
     <div id="OSC_Channels">
         <ul>
-        <li><a href="#" class="project">心情 here...</a></li>
+        <li><a href="javascript:;" class="project"><?php echo $this->session->userdata(umood);?></a></li>
         </ul>
     </div>
     <div class="clear"></div>
@@ -56,25 +56,22 @@
     <div id="lnks">
 		<strong><?php echo $this->session->userdata('uname');?>的博客</strong>
 		<div><a href="Blog/index">TA的博客列表</a>&nbsp;|
-			<a href="Message/sendMsg">发送留言</a></div>
+			<a href="Blog/outbox">发送留言</a></div>
 	</div>
 	<div class="clear"></div>
 </div>
 <div class="BlogList">
 <ul>
 	<?php
-        $myClassify = array();
         foreach ($blogs as $val) {
-        if ($this->session->userdata('uid') == $val->USER_ID) {
-            array_push($myClassify, $val->NAME);
-        }
-
+            //urlencode进行编码
+            $newtime=urlencode($val->ADD_TIME);
     ?>
-    <li class="Blog" id="<?php echo $val->BLOG_ID ?>">
-        <h2 class="BlogAccess_true BlogTop_0"><a href="Blog/viewPost_logined"><?php echo $val->TITLE; ?></a></h2>
+    <li class="Blog" id="<?php echo $val->BLOG_ID;?>">
+        <h2 class="BlogAccess_true BlogTop_0"><a href="Blog/viewPost_logined?id=<?php echo $val->BLOG_ID;?>?time=<?php echo $newtime;?>"><?php echo $val->TITLE; ?></a></h2>
         <div class="outline">
             <span class="time">发表于：<?php echo $val->ADD_TIME; ?></span>
-            <span class="catalog">分类：<a href="#"><?php echo $val->NAME; ?></a></span>
+            <span class="catalog">分类：<a href="javascript:;"><?php echo $val->NAME; ?></a></span>
             <span class="stat">统计: <?php echo $val->COMM_RATE; ?>评/<?php echo $val->CLICK_RATE; ?>阅</span>
             <?php
                 if ($this->session->userdata('uid') == $val->USER_ID) {
@@ -89,7 +86,7 @@
     </div>
 		<div class="TextContent" id="blog_content_24027">
 				<?php echo $val->CONTENT;?>
-		<div class="fullcontent"><a href="Blog/blog_comment">阅读全文...</a></div>
+		<div class="fullcontent"><a href="Blog/viewPost_logined?id=<?php echo $val->BLOG_ID;?>?time=<?php echo $newtime;?>">阅读全文...</a></div>
 			</div>
 	  </li>
 	<?php
@@ -113,7 +110,7 @@
       <?php
         foreach($blog1 as $v) {
             ?>
-            <li><a href="#"><?php echo $v->NAME;?>(<?php echo $v->count;?>)</a></li>
+            <li><a href="javascript:;"><?php echo $v->NAME;?>(<?php echo $v->count;?>)</a></li>
             <?php
         }
       ?>
@@ -124,9 +121,11 @@
       <ul>
           <?php
             foreach ($blog2 as $v) {
+                //urlencode进行编码
+                $newtime=urlencode($v->ADD_TIME);
                 ?>
                 <li>
-                    <span class="u"><a href="#">
+                    <span class="u"><a href="Blog/viewPost_logined?id=<?php echo $v->COMMENT_ID;?>?time=<?php echo $newtime;?>">
                             <img src="images/portrait.gif"
                                  alt="<?php echo $v->ACCOUNT; ?>"
                                  title="<?php echo $v->ACCOUNT; ?>"
@@ -167,7 +166,7 @@
                         }else if($nowSecond!=$time[2]){
                             echo $nowSecond!=$time[2].'秒';
                         }
-                    ?>前 <a href="Blog/viewPost_logined">查看»</a></span>
+                    ?>前 <a href="Blog/viewPost_logined?id=<?php echo $v->COMMENT_ID;?>?time=<?php echo $newtime;?>">查看»</a></span>
             </span>
                     <div class="clear"></div>
                 </li>
@@ -199,9 +198,11 @@
             $.get('Blog/del', {'id':e.target.id},function(data){
                 $('li.Blog').remove('.choice');
             },'json');
+
         }else if(cfm==false){
             $('li.Blog').removeClass('choice');
         }
+        // window.location.reload();//如果不加该方法，就得重新计算count
     });
 </script>
 </body>

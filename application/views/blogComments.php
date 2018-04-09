@@ -26,20 +26,20 @@
     <div id="OSC_Slogon"><?php echo $this->session->userdata('uname');?>'s Blog</div>
     <div id="OSC_Channels">
         <ul>
-        <li><a href="#" class="project">心情 here...</a></li>
+        <li><a href="" class="project"><?php echo $this->session->userdata(umood);?></a></li>
         </ul>
     </div>
     <div class="clear"></div>
 </div><!-- #EndLibraryItem --><div id="OSC_Topbar">
 	  <div id="VisitorInfo">
 		当前访客身份：
-				<?php echo $this->session->userdata('uname');?> [ <a href="#">退出</a> ]
+				<?php echo $this->session->userdata('uname');?> [ <a href="User/unindex">退出</a> ]
 				<span id="OSC_Notification">
-			<a href="#" class="msgbox" title="进入我的留言箱">你有<em>0</em>新留言</a>
+			<a href="Blog/inbox" class="msgbox" title="进入我的留言箱">你有<em>0</em>新留言</a>
 																				</span>
     </div>
 		<div id="SearchBar">
-    		<form action="#">
+    		<form action="javascript:;">
                 <input name="user" value="154693" type="hidden">
                 <input id="txt_q" name="q" class="SERACH" value="在此空间的博客中搜索" onblur="(this.value=='')?this.value='在此空间的博客中搜索':this.value" onfocus="if(this.value=='在此空间的博客中搜索'){this.value='';};this.select();" type="text">
 				<input class="SUBMIT" value="搜索" type="submit">
@@ -56,10 +56,10 @@
     <div id="AdminMenu"><ul>
 	<li class="caption">个人信息管理		
 		<ol>
-			<li><a href="inbox.htm">站内留言(0/1)</a></li>
-			<li><a href="profile.htm">编辑个人资料</a></li>
-			<li><a href="chpwd.htm">修改登录密码</a></li>
-			<li><a href="userSettings.htm">网页个性设置</a></li>
+			<li><a href="Blog/inbox">站内留言(0/1)</a></li>
+			<li><a href="Blog/profile">编辑个人资料</a></li>
+			<li><a href="Blog/chpwd">修改登录密码</a></li>
+			<li><a href="Blog/userSettings">网页个性设置</a></li>
 		</ol>
 	</li>		
 </ul>
@@ -83,7 +83,7 @@
             ?>
             <li id="cmt_24027_154693_261665734" class="row_1 <?php echo $v->COMMENTATOR;?>">
                 <span class="portrait">
-                    <a href="#" target="_blank">
+                    <a href="javascript:;" target="_blank">
                         <img src="images/portrait.gif"
                              alt="<?php echo $v->ACCOUNT; ?>"
                              title="<?php echo $v->ACCOUNT; ?>"

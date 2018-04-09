@@ -86,7 +86,7 @@
             if($result){
                 $array=array(
                     'uid'=>$result->USER_ID,
-                    'uname'=>$result->NAME
+                    'uname'=>$result->NAME,
                 );
                 $this->session->set_userdata($array);
                 redirect('Blog/index');
