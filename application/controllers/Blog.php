@@ -300,10 +300,19 @@
                 }
             }
         }
+        //修改心情
+        public function update_userSettings(){
+            $space=$this->input->post('space_name');
+            $this->load->model('Blog_model');
+            $rs=$this->Blog_model->set_mood($space);//更改心情
+            if($rs){
+                redirect('Blog/userSettings');//正常应该跳到adminIndex
+            }
+        }
         //设置心情session,读取心情
         public function userSettings(){
             $this->load->model('Blog_model');
-            $rs=$this->Blog_model->show_mydata();//查询心情
+            $rs=$this->Blog_model->show_mood();//查询心情
             if($rs){
                 $array=array(
                     'umood'=>$rs[0]->MOOD,
@@ -312,15 +321,6 @@
             }
             $arr['myMOOD']=$rs;
             $this->load->view('userSettings.php',$arr);
-        }
-        //修改心情
-        public function update_userSettings(){
-            $space=$this->input->post('space_name');
-            $this->load->model('Blog_model');
-            $rs=$this->Blog_model->set_mood($space);//更改心情
-            if($rs){
-                redirect('Blog/adminIndex');
-            }
         }
     }
 ?>

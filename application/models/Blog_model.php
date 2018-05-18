@@ -275,6 +275,13 @@
             $query=$this->db->query($sql);
             return $query;
         }
+        //显示心情
+        public function show_mood(){
+            $uid=$this->session->userdata('uid');
+            $sql="select MOOD from t_users where USER_ID='$uid'";
+            $query=$this->db->query($sql);
+            return $query->result();
+        }
 
     }
 
